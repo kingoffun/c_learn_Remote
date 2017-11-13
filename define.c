@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// demonstrate how define work
+
 #define LOWER 0 //botom table limit
 #define UPPER 300 //upper table limit
 #define STEP 20 //step value
