@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAXLINE 1000 // max size of the input line
+#define MAXLINE 10 // max size of the input line
 
 int getLine(char line[], int maxline);
 void copy(char to[], char from[]);
@@ -12,18 +12,33 @@ main()
     int max; // length of the max line from viewed one
     char line[MAXLINE]; // current line
     char longest[MAXLINE]; // the longest line
+    int c;
 
     max = 0;
 
-    while ((len = getLine(line, MAXLINE)) > 0)
+    while ((len = getLine(line, MAXLINE)) > 0){
+	
+	if (line[len-1] != '\n')
+	    while ((c = getchar()) != EOF && c !='\n')
+		++len;
+	
 	if (len > max){
 	    max = len;
 	    copy(longest, line);
 	}
+    }
     
-    if (max > 0) // if there was at least one line
-	printf("%s\n", longest);
+    if (max < MAXLINE) // subtract null-symbol inserted in getLine
+	--max;
     
+    if (max > 0){ // if there was at least one line
+	if(max > MAXLINE)
+	    printf("%s...\n", longest);
+	else
+	    printf("%s\n", longest);
+    }
+    printf("string length - %d symbol\n",max);
+
     return 0;
 }
 
