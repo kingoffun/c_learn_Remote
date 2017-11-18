@@ -1,6 +1,8 @@
 #include <stdio.h>
 
-#define MAXLINE 10 // max size of the input line
+#define true 	1
+#define false	0
+//#define MAXLINE 10 // max size of the input line
 
 int getLine(char line[], int maxline);
 void copy(char to[], char from[]);
@@ -16,7 +18,7 @@ main()
 
     max = 0;
 
-    //printf("%d 666\n", getLine(line, MAXLINE));
+    while ((c = getchar()) != EOF)
 
     while ((len = getLine(line, MAXLINE)) > 0){
 	//printf("%s",line);
@@ -31,6 +33,18 @@ main()
 	}
 
     return 0;
+}
+
+int isNullLine(char s[]){
+    char c;
+    int i;
+    int first;
+
+    first = false;
+    
+    while (true)
+    
+    return true;
 }
 
 // getline: read line into s, return length
