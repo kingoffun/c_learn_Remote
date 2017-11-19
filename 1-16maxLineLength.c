@@ -32,7 +32,7 @@ main()
 	--max;
     
     if (max > 0){ // if there was at least one line
-	if(max > MAXLINE)
+	if(max >= MAXLINE)
 	    printf("%s...\n", longest);
 	else
 	    printf("%s\n", longest);

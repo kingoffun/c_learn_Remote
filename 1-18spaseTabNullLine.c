@@ -1,8 +1,7 @@
 #include <stdio.h>
 
-#define true 	1
-#define false	0
-//#define MAXLINE 10 // max size of the input line
+#define TRUE 	1
+#define FALSE	0
 
 int getLine(char line[], int maxline);
 void copy(char to[], char from[]);
@@ -10,41 +9,62 @@ void copy(char to[], char from[]);
 // print the longest line
 main()
 {
-    int len; // current line length
-    int max; // length of the max line from viewed one
-    char line[MAXLINE]; // current line
-    char longest[MAXLINE]; // the longest line
+    int first; // bool flag for girst symbol in line
     int c;
+    int sps_state, tb_state; // states for space and tab
+    int in;
 
-    max = 0;
+    first = TRUE;
+    sps_state = tb_state = in = FALSE;
 
-    while ((c = getchar()) != EOF)
-
-    while ((len = getLine(line, MAXLINE)) > 0){
-	//printf("%s",line);
-	if (len == MAXLINE){
-	    printf("%s",line);
-	    while ((c = getchar()) != EOF && c != '\n'){
+    while ((c = getchar()) != EOF){
+	if (c != ' ' && c != '\t' && c != '\n'){
+	    if (in == FALSE){
+		if (first == TRUE)
+		    first = FALSE;
+		in = TRUE;
+	    }
+	    putchar(c);
+	}
+	else{
+	    if (in == TRUE){
+		putchar(c);
+		in = FALSE;
+		if (c == '\n')
+		    first = TRUE;
+	    }
+	    else if (first == TRUE && c != '\n'){
 		putchar(c);
 	    }
-	    putchar(c); // show \n
+	    else if (first == FALSE && c == '\n')
+		putchar(c);
+	}
+	
+	//if (c == ' ' && sps_state == FALSE)
+	//    sps_state = TRUE;
+
+	//if (c == '\t' && tb_state == FALSE)
+	//    tb_state = TRUE;
+	
+	if (first == TRUE){ // 
+	    if (c != '\n'){
+		putchar(c);
+		first = FALSE;
+	    }
+	}
+	else{
+	    if (c != '\n')
+		putchar(c);
+	    else{
+		putchar(c);
+		first = TRUE;
+	    }
 	    
 	}
-	}
+	
+    }
 
     return 0;
-}
-
-int isNullLine(char s[]){
-    char c;
-    int i;
-    int first;
-
-    first = false;
-    
-    while (true)
-    
-    return true;
 }
 
 // getline: read line into s, return length
