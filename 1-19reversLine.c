@@ -3,8 +3,10 @@
 #define MAXLINE 10 // max size of the input line
 
 void getLine();
+void reversLine(char ln[]);
 
 char line[MAXLINE];
+char rline[MAXLINE];
 
 main()
 {
@@ -12,11 +14,27 @@ main()
 
     while((c = getchar()) != EOF){
 	getLine();
+	reversLine(line);
+	printf("%s\n", rline);
     }
 	
-    printf("%s...\n", longest);
-
     return 0;
+}
+
+void reversLine(char ln[])
+{
+    //char s[MAXLINE];
+    int i,j;
+    
+    if(ln[MAXLINE-2] == '\n'){
+    
+	for (i = MAXLINE-3, j = 0; i >= 0; --i, ++j)
+	    rline[j] = ln[i];
+	
+	rline[j] = ln[j];
+	++j;
+	rline[j] = ln[j];
+    }
 }
 
 // getline: read line into s, return length
@@ -33,6 +51,4 @@ void getLine()
     }
     
     line[i] = '\0';
-
-    return i;
 }
