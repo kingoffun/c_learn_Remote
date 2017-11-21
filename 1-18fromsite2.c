@@ -6,7 +6,7 @@
 main()
 {
     int first; // bool flag for girst symbol in line
-    int c,tc;
+    int c,tc = -2;
     int sps_state, tb_state; // states for space and tab
 
     first = TRUE;
@@ -16,27 +16,32 @@ main()
 	if (first == TRUE){
 	    if (c != '\n'){
 		first = FALSE;
-		if (c != ' ' && c != '\t')
+		if (c != '1' && c != '0')
 		    putchar(c);
 		else
 		    tc = c;
 	    }
 	}
 	else{
-	    if (c == ' ' || c == '\t'){
-	        tc = c;
+	    if (c == '1' || c == '0'){
+	        if (tc == '1' || tc == '0')
+		    putchar(tc);
+		tc = c;
 		continue;
 	    }
 	    
 	    
-	    if (c == '\n' && (tc == ' ' || tc == '\t')){
+	    if (c == '\n' && (tc == '1' || tc == '0')){
 		    first = TRUE;
 		    putchar(c);
 	    }
 	    else{
-		putchar(tc);
+		if (tc > -2){
+		    putchar(tc);
+		    tc = -2;
+		}
 		putchar(c);
-		tc = c;
+		//tc = c;
 	    }
 	}
     }
