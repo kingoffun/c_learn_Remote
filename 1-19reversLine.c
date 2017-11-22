@@ -14,7 +14,7 @@ main()
 {
     while((c = getchar()) != EOF){
 	getLine();
-//	printf("%s\n", line);
+//	printf("%s", line);
 	reversLine(line);
 	printf("%s", rline);
 //	putchar(rline[MAXLINE-1]);
@@ -37,7 +37,7 @@ void reversLine(char ln[])
 	rline[j] = ln[j];
     }
     else if(notMAX < MAXLINE-1) {
-	for (i = notMAX-2, j = 0; i >= 0; --i, ++j)
+	for (i = notMAX-1, j = 0; i >= 0; --i, ++j)
 	    rline[j] = ln[i];
 	
 	rline[j] = ln[j];
