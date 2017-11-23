@@ -1,4 +1,5 @@
 #include <stdio.h>
+//#include <stdio_ext.h>
 
 #define MAXLINE 10 // max size of the input line
 
@@ -53,12 +54,16 @@ void getLine()
 	line[i] = c;
 	c = getchar();
     }
+
     line[i] = '\n';
 
     if (i < MAXLINE-1)
 	notMAX = i;
     else if (i == MAXLINE-1)
 	notMAX = 0;
+
+    //fseek(stdin,0,SEEK_SET);
+//    fpurge(stdin);
 }
 
 void freeLine()
