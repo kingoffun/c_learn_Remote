@@ -1,33 +1,81 @@
 #include <stdio.h>
 
+#define MAX 10	// numb of symb in line
 #define TAB 8	// numb of spaces to change tabs
+
+void getLine();
+int spcOnly(char line[]);
+void freeLine();
+
+char line[MAX];
+int notMAX,c;
 
 int main()
 {
-    int c,i,symb,ntab;
+    int i;
 
-    symb = 1;
-    
     while ((c = getchar()) != EOF){
 	
-	if(c == '\t'){
-	    ntab = TAB - (symb-1);
+	getLine();
+	//printf("%d\n",spcOnly(line));
+	if(spcOnly(line) == (MAX-1)){
+	    freeLine();
+	    for(i=0;i<(MAX-1)/TAB;++i)
+		line[i]='\t';
+	//   printf("%d\n",(MAX-1)/TAB);
+	    while(i <= (MAX-1-TAB))
+		line[i++]='1';
 	    
-	    for(i = 0; i < ntab; ++i)
-		putchar('|');
-	    
-	    symb = 0;
+	    line[i] = '\n';
 	}
-	else if(c == '\n'){
-	    putchar(c);
-	    symb = 0;
-	}
-	else
-	    putchar(c);
-	
-	symb++;
-	if(symb == TAB)
-	    symb=0;
+
+	printf("%s",line);
     }
+
+
+	
     return 0;
+}
+
+void getLine()
+{
+    int i;
+
+    freeLine();
+
+    for(i=0;i<MAX-1 && c != '\n';++i){
+	line[i] = c;
+	c = getchar();
+    }
+
+    line[i] = c;
+
+    //printf("%s",line);
+
+    if(i<MAX-2)
+	notMAX = i;
+}
+
+int spcOnly(char s[])
+{
+    int i,state;
+    
+    state = 0;
+    
+    for(i=0;i<MAX-1;++i){
+	if(s[i]=='1')
+	    state++;
+	else
+	    return 0;
+    }
+
+    return state;
+}
+
+void freeLine()
+{
+    int i;
+
+    for(i=0;i<MAX;++i)
+	line[i] = 0;
 }
