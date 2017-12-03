@@ -1,41 +1,29 @@
 #include <stdio.h>
 
-#define IN 1
-#define OUT 0
+#define MAX 10
 
-int htol(char hexa[]);
+void squeeze(char s1[], char s2[]);
 
 int main()
 {
-    char s[4] = {'0','x','F','f'};
+    char toFind[6] = {'a','b','c','1','2','3'};
+    char line[MAX];
+    int i, c;
+
+    for(i = 0;i < MAX-1 && (c = getchar()) != EOF && c != '\n';i++){
+	    line[i] = c;
+    }
+
     printf("%d\n", htol(s));
 
     return 0;
 }
 
-int htol(char s[])
+void squeeze(char s1[], s2[])
 {
-    int i = 0, number = 0, indigit = IN, hexdig;
+    int i, c;
     
-    if(s[i] == '0'){
-	i++;
-	if(s[i] == 'x' || 'X')
-	    i++;
-    }
-
-    for(;indigit == IN;i++){
-	if(s[i] >= '0' && s[i] <= '9')
-	    hexdig = s[i] - '0';
-	else if(s[i] >= 'a' && s[i] <= 'f')
-	    hexdig = s[i] - 'a' + 10;
-	else if(s[i] >= 'A' && s[i] <= 'F')
-	    hexdig = s[i] - 'A' + 10;
-	else
-	    indigit = OUT;
-
-	if(indigit == IN)
-	    number = number*16 + hexdig;
-    }
+    
 
     return number;
 }
