@@ -31,7 +31,7 @@ int main()
 
     line[i] = '\0';
 
-    //printf("%s\n",toFind);
+    printf("%s\n",line);
     squeeze(line,toFind);
     printf("%s", line);
     //clearLine(line);
@@ -47,6 +47,10 @@ void squeeze(char s1[], char s2[])
 	for(i = j = 0; s1[i] != '\0'; i++)
 	    if(s1[i] != s2[k])
 		s1[j++] = s1[i];
+	
+	s1[j++] = '\0';
+	for(;j < strlen(s1)-1; j++)
+	    s1[j] = 0;
     }
 }
 
