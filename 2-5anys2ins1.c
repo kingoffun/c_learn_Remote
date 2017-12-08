@@ -3,7 +3,7 @@
 
 #define MAX 10
 
-void squeeze(char s1[], char s2[]);
+int any(char s1[], char s2[]);
 void clearLine(char line[]);
 
 int main()
@@ -13,46 +13,43 @@ int main()
     int i, c;
 
     while((c = getchar()) != EOF){
-    for(i = 0;i < MAX-2 && c != EOF && c != '\n';i++){
+	for(i = 0;i < MAX-2 && c != EOF && c != '\n';i++){
 	    line[i] = c;
 	    c = getchar();
-    }
-
-    //printf("%d\n",i);
-
-//    if(i == MAX-1 && line[i-1] != '\n')
-//	line[i-1] = '\n';
-
-//    if(i < MAX-1){
-		//printf("%d\n",i);
-//	line[i++] = '\n';
-
-//    }
+	}
 
     line[i++] = '\n';
     line[i] = '\0';
 
-//    printf("%s\n",line);
-    squeeze(line,toFind);
-    printf("%s", line);
-    //clearLine(line);
+    
+    printf("%d\n", any(line,toFind));
+
     }
     return 0;
 }
 
-void squeeze(char s1[], char s2[])
+int any(char s1[], char s2[])
 {
-    int i, j, k;
+    int i, j = 0, k;
 
     for(k = 0; s2[k] != '\0';k++){
-	for(i = j = 0; s1[i] != '\0'; i++){
-	    if(s1[i] != s2[k])
-		s1[j++] = s1[i];
+	for(i = 0; s1[i] != '\0'; i++){
+	    if(s1[i] == s2[k]){
+		if(i == 0 || (i>0 && i+1 < j)){
+		    j = i+1;
+		    break;
+		}
+	    }
 	}
-	s1[j++] = '\0';
-	for(;j < strlen(s1)-1; j++)
-	    s1[j] = 0;
+	
+	if(j>0)
+	    break;
     }
+    
+    if(j>0)
+	return j;
+    else
+	return -1;
 }
 
 void clearLine(char line[]){
