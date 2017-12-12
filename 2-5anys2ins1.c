@@ -35,15 +35,17 @@ int any(char s1[], char s2[])
     for(k = 0; s2[k] != '\0';k++){
 	for(i = 0; s1[i] != '\0'; i++){
 	    if(s1[i] == s2[k]){
-		if(i == 0 || (i>0 && i+1 < j)){
+		if(j>0 && i+1 < j){
 		    j = i+1;
-		    break;
+		    //break;
 		}
+		else if(j == 0)
+		    j = i+1;
 	    }
 	}
 	
-	if(j>0)
-	    break;
+	//if(j>0)
+	//    break;
     }
     
     if(j>0)
