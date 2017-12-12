@@ -4,7 +4,6 @@
 #define MAX 10
 
 int any(char s1[], char s2[]);
-void clearLine(char line[]);
 
 int main()
 {
@@ -37,25 +36,15 @@ int any(char s1[], char s2[])
 	    if(s1[i] == s2[k]){
 		if(j>0 && i+1 < j){
 		    j = i+1;
-		    //break;
 		}
 		else if(j == 0)
 		    j = i+1;
 	    }
 	}
-	
-	//if(j>0)
-	//    break;
     }
     
     if(j>0)
 	return j;
     else
 	return -1;
-}
-
-void clearLine(char line[]){
-    int i;
-    for(i = strlen(line)-1; i >=0; i--)
-	line[i] = 0;
 }
