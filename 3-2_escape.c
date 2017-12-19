@@ -30,8 +30,8 @@ int main(){
     clrline(line);
     clrline(escline);
 
-    printf("%s\n",line);
-    printf("%s\n",escline);
+//    printf("%s\n",line);
+//    printf("%s\n",escline);
 
     }
     return 0;
@@ -40,8 +40,8 @@ int main(){
 void escape(char s[], char t[]){
 
     int i;
-    
-    for(i = 0;i < strlen(t);i++){
+
+    for(i = 0;t[i] != '\0';i++){
 	switch(t[i]){
 	case '\t':
 	    s[i++] = '\\';
@@ -49,13 +49,14 @@ void escape(char s[], char t[]){
 	    break;
 	case '\n':
 	    s[i++] = '\\';
-	    s[i] = 'n';
+	    s[i++] = 'n';
 	    break;
 	default:
 	    s[i] = t[i];
 	    break;
 	}
     }
+        s[i] = '\0';
 }
 
 void clrline(char line[]){
