@@ -11,35 +11,30 @@ int main(){
 
     char line[MAX];
     char escline[MAX];
+    memset(line, 0, sizeof(line));
+    memset(escline, 0, sizeof(escline));	
 
-    int i, c;
+    int i=0	, c;
 
     while((c = getchar()) != EOF){
-	for(i = 0;i < MAX-2 && c != EOF && c != '\n';i++){
-	    line[i] = c;
-	    c = getchar();
-	}
-
-	line[i++] = '\n';
-        line[i] = '\0';
-    
-	escape(escline,line);
-	printf("%s\n",escline);
-
-	clrline(line);
-	clrline(escline);
-	memset(line, 0, sizeof(line));
-	memset(escline, 0, sizeof(escline));
-	printf("line = %s\neline = %s\n", line, escline);
+	if ( c == '\n' ) {
+	    line[i] = 0;
+	    i = 0;
+	    memset(escline, 0, sizeof(escline));
+	    escape(escline, line);
+	    printf("escaped = %s\n", escline);
+	} else {
+	    line[i++] = c;
+        }
     }
     return 0;
 }
 
 void escape(char s[], char t[]){
 
-    int i;
+    int i, j;
 
-    for(i = 0;t[i] != '\0';i++){
+    for(i = 0, j=0;t[i] != '\0';i++){
 	switch(t[i]){
 	case '\t':
 	    s[i++] = '\\';
